@@ -1,15 +1,15 @@
 # -*- coding: cp932 -*-
 def search_x(n1,x)
     # puts "search_x n1=#{n1},x=#{x}"
-    $line[n1].each { |nn|
-        if nn == x then
-            # puts "true"
-            return true
-        else
-            return search_x(nn,x)
-        end
-    }
-    # puts "false"
+    i = n1
+    if $line[i].index(x) != nil then return true end
+    begin
+        $line[i].each { |j|
+            if $line[j].index(x) != nil then return true end
+            i = $line[j][0] # ここを複数個にしたい！
+            if i == nil then next end
+        }
+    end while i != nil 
     return false
 end
 
@@ -25,7 +25,7 @@ k.times {
     b = tmp[1].to_i
     $line[a] << b
 }
-# p $line
+p $line
 cnt = 0
 $line[1].each { |e|
     if e == x || search_x(e,x) == true then
