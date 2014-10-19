@@ -1,15 +1,43 @@
 # -*- coding: cp932 -*-
 def search_x(n1,x)
-    # puts "search_x n1=#{n1},x=#{x}"
+# puts "search_x n1=#{n1},x=#{x}" #####
+    stack = []
     i = n1
-    if $line[i].index(x) != nil then return true end
     begin
-        $line[i].each { |j|
-            if $line[j].index(x) != nil then return true end
-            i = $line[j][0] # ここを複数個にしたい！
-            if i == nil then next end
-        }
-    end while i != nil 
+# puts "i=#{i}" #####
+        # 見つかったら戻る
+        if i==x || $line[i].index(x) != nil then
+# puts "true" #####
+            return true
+        end
+        # 残りデータ無しでスタックが空なら終了
+        if $line[i].length == 0 && stack.length == 0 then
+            break
+        end
+
+        # 残りデータ有りならスタックに格納
+        if $line[i].length > 0 then
+            top = 0
+            $line[i].each { |n|
+                if top == 0 then
+                    top = n
+                else
+                    stack.push n
+# print "push "
+# p stack #####
+                end
+            }
+            i = top
+        else
+            # スタック有りなら取り出し
+            if stack.length>0 then
+# print "pop "
+# p stack #####
+                i = stack.pop
+            end
+        end
+    end while true
+# puts "fales" #####
     return false
 end
 
@@ -25,7 +53,8 @@ k.times {
     b = tmp[1].to_i
     $line[a] << b
 }
-p $line
+# p $line #####
+
 cnt = 0
 $line[1].each { |e|
     if e == x || search_x(e,x) == true then
