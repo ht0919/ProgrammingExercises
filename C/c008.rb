@@ -2,6 +2,7 @@
 s = gets.chomp.split(" ")
 t1 = s[0]
 t2 = s[1]
+//ƒ^ƒO‚ÅˆÍ‚Ü‚ê‚½Å’Zˆê’v‚Ì•¶š—ñ‚ğ’Šo
 str = gets.chomp.scan(/#{t1}(.*?)#{t2}/)
 str.each { |v|
     if v[0].empty? || v[0].nil? then
