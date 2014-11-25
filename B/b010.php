@@ -24,7 +24,6 @@ if ($T == "A") {
     $b = $XB[9];
     $flg = false;
     $num = 1;
-    //XA.each {|a|
     foreach ($XA as $a) {
         if ($a>=55 && $a>$b && $a>$pass) {
             echo $num . "\n";
@@ -39,7 +38,6 @@ if ($T == "A") {
     $a = $XA[1];
     $flg = false;
     $num = 1;
-    //XB.each {|b|
     foreach ($XB as $b) {
         if ($b<=55 && $b<$a && $b<$pass) {
             echo $num . "\n";
