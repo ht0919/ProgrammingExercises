@@ -52,16 +52,18 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <title>テニスサークル交流サイト</title>
+  <title>ログインサンプル(login.php)</title>
 </head>
 <body>
-  <h1>テニスサークル交流サイト</h1>
+  <h1>ログインサンプル(login.php)</h1>
 
-  <h2>ログイン</h2>
+  <h2>ログインしてください</h2>
   <form action="login.php" method="post">
-    <p>ユーザ名：<input type="text" name="name"></p>
-    <p>パスワード：<input type="password" name="password"></p>
-    <p><input type="submit" value="ログイン"></p>
+   <table>
+    <tr><td>UserID</td><td><input type="text" name="name"></td></tr>
+    <tr><td>Passwd</td><td><input type="password" name="password"></td></tr>
+   </table>
+   <p><input type="submit" value="ログイン"></p>
   </form>
 
 </body>
