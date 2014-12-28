@@ -1,21 +1,21 @@
-# -*- coding: cp932 -*-
+# -*- coding: utf-8 -*-
 def search_x(n1,x)
 # puts "search_x n1=#{n1},x=#{x}" #####
     stack = []
     i = n1
     begin
 # puts "i=#{i}" #####
-        # Œ©‚Â‚©‚Á‚½‚ç–ß‚é
+        # è¦‹ã¤ã‹ã£ãŸã‚‰æˆ»ã‚‹
         if i==x || $line[i].index(x) != nil then
 # puts "true" #####
             return true
         end
-        # Žc‚èƒf[ƒ^–³‚µ‚ÅƒXƒ^ƒbƒN‚ª‹ó‚È‚çI—¹
+        # æ®‹ã‚Šãƒ‡ãƒ¼ã‚¿ç„¡ã—ã§ã‚¹ã‚¿ãƒƒã‚¯ãŒç©ºãªã‚‰çµ‚äº†
         if $line[i].length == 0 && stack.length == 0 then
             break
         end
 
-        # Žc‚èƒf[ƒ^—L‚è‚È‚çƒXƒ^ƒbƒN‚ÉŠi”[
+        # æ®‹ã‚Šãƒ‡ãƒ¼ã‚¿æœ‰ã‚Šãªã‚‰ã‚¹ã‚¿ãƒƒã‚¯ã«æ ¼ç´
         if $line[i].length > 0 then
             top = 0
             $line[i].each { |n|
@@ -29,7 +29,7 @@ def search_x(n1,x)
             }
             i = top
         else
-            # ƒXƒ^ƒbƒN—L‚è‚È‚çŽæ‚èo‚µ
+            # ã‚¹ã‚¿ãƒƒã‚¯æœ‰ã‚Šãªã‚‰å–ã‚Šå‡ºã—
             if stack.length>0 then
 # print "pop "
 # p stack #####
