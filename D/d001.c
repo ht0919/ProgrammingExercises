@@ -6,7 +6,7 @@ int main(void) {
     char str[255], *token1, *token2;
 
     fgets(str,sizeof(str),stdin);
-    strtok(str, "\n\0"); // 改行コードを削除
+    strtok(str, "\n\0");
     token1 = strtok(str , " ");
     token2 = strtok(NULL, " ");
 
