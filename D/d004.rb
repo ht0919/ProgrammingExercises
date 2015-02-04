@@ -1,16 +1,14 @@
 word = []
 num = gets.to_i
-num.times {
+num.times do
   word << gets.chomp
-}
-first = true
-word.each { |s|
-    if first then
-        print "Hello "
-        first = false
-    else 
-        print ","
-    end
-    print s
-}
-puts "."
+end
+print "Hello "
+word.each do |s|
+  print s
+  if s != word.last then
+    print ","
+  else
+    puts "."
+  end
+end
