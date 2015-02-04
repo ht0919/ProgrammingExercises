@@ -1,14 +1,11 @@
-word = []
-num = gets.to_i
-num.times do
-  word << gets.chomp
-end
+n = gets.to_i
 print "Hello "
-word.each do |s|
-  print s
-  if s != word.last then
-    print ","
-  else
-    puts "."
-  end
+n.times do |i|
+    s = gets.chomp
+    print s
+    if (i+1) == n then  # 最後の単語なら "."と改行
+        puts "."
+    else                # そうでなければ ","
+        print ","
+    end
 end
