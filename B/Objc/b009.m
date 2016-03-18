@@ -85,7 +85,7 @@ int main(void) {
     et1 = [[et objectAtIndex:1] integerValue];
     NSString *str = [NSString stringWithFormat:@"%02d:%02d - %02d:%02d %@\n",
     st0,st1,et0,et1,name];
-    [[NSFileHandle fileHandleWithStandardOutput]
+    [(NSFileHandle*)[NSFileHandle fileHandleWithStandardOutput]
     writeData: [str dataUsingEncoding: NSUTF8StringEncoding]];
 
     // 休憩を10分取って次の開始時刻を更新
@@ -110,4 +110,7 @@ int main(void) {
     [st removeObjectAtIndex:1];
     [st insertObject:@(et1) atIndex:1]; 
   }
+
+  [pool release];
+  return 0;
 }

@@ -37,7 +37,7 @@ int main(void) {
   }
 
   tmp_s = [NSString stringWithFormat:@"%d\n", max];
-  [[NSFileHandle fileHandleWithStandardOutput]
+  [(NSFileHandle*)[NSFileHandle fileHandleWithStandardOutput]
     writeData: [tmp_s dataUsingEncoding: NSUTF8StringEncoding]];
 
   [pool release];
