@@ -1,4 +1,10 @@
 #import <Foundation/Foundation.h>
+
+static void print(NSString*str) {
+  [(NSFileHandle*)[NSFileHandle fileHandleWithStandardOutput]
+    writeData: [str dataUsingEncoding: NSUTF8StringEncoding]];
+}
+
 int main(void) {
 
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -6,7 +12,7 @@ int main(void) {
   NSInteger offset = 0;
 
   // All data read
-  NSString *readdata = [[[NSString alloc] 
+  NSString *readdata = [[[NSString alloc]
     initWithData:[[NSFileHandle fileHandleWithStandardInput]
     readDataToEndOfFile] encoding:NSUTF8StringEncoding] autorelease];
   // Separate line
@@ -14,22 +20,22 @@ int main(void) {
 
   NSArray *tmp = [[lines objectAtIndex:offset++] componentsSeparatedByString:@" "];
   NSString *T = [tmp objectAtIndex:0];
-  NSInteger U = [[tmp objectAtIndex:1] integerValue]; 
+  NSInteger U = [[tmp objectAtIndex:1] integerValue];
 
   NSArray *tmpXA = [[lines objectAtIndex:offset++] componentsSeparatedByString:@" "];
   NSMutableArray *XA = [NSMutableArray array];
   for (int i=0; i<11; i++) {
-    int n = [[tmpXA objectAtIndex:i] integerValue]; 
-    [XA addObject:@(n)]; 
+    int n = [[tmpXA objectAtIndex:i] integerValue];
+    [XA addObject:@(n)];
   }
 
   NSArray *tmpXB = [[lines objectAtIndex:offset++] componentsSeparatedByString:@" "];
   NSMutableArray *XB = [NSMutableArray array];
   for (int i=0; i<11; i++) {
-    int n = [[tmpXB objectAtIndex:i] integerValue]; 
-    [XB addObject:@(n)]; 
+    int n = [[tmpXB objectAtIndex:i] integerValue];
+    [XB addObject:@(n)];
   }
-  
+
   if ([T isEqualToString:@"A"]) {
     int passer = [[XA objectAtIndex:U-1] integerValue];
     XB = (NSMutableArray*)[XB sortedArrayUsingSelector:@selector(compare:)];
@@ -41,8 +47,7 @@ int main(void) {
       int a = [[XA objectAtIndex:i] integerValue];
       if (a>=55 && a>b && a>passer) {
         NSString *str = [NSString stringWithFormat:@"%d\n",num];
-        [(NSFileHandle*)[NSFileHandle fileHandleWithStandardOutput]
-          writeData: [str dataUsingEncoding: NSUTF8StringEncoding]];
+        print(str);
         flg = YES;
       }
       num += 1;
@@ -50,8 +55,7 @@ int main(void) {
 
     if (flg == NO) {
       NSString *str = @"None\n";
-      [(NSFileHandle*)[NSFileHandle fileHandleWithStandardOutput]
-        writeData: [str dataUsingEncoding: NSUTF8StringEncoding]];
+      print(str);
     }
   } else {
     int passer = [[XB objectAtIndex:U-1] integerValue];
@@ -64,8 +68,7 @@ int main(void) {
       int b = [[XB objectAtIndex:i] integerValue];
       if (b<=55 && b<a && b<passer) {
         NSString *str = [NSString stringWithFormat:@"%d\n",num];
-        [(NSFileHandle*)[NSFileHandle fileHandleWithStandardOutput]
-          writeData: [str dataUsingEncoding: NSUTF8StringEncoding]];
+        print(str);
         flg = YES;
       }
       num += 1;
@@ -73,8 +76,7 @@ int main(void) {
 
     if (flg == NO) {
       NSString *str = @"None\n";
-      [(NSFileHandle*)[NSFileHandle fileHandleWithStandardOutput]
-        writeData: [str dataUsingEncoding: NSUTF8StringEncoding]];
+      print(str);
     }
   }
 

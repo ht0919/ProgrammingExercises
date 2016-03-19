@@ -1,44 +1,53 @@
 #import <Foundation/Foundation.h>
+
+static void print(NSString*str) {
+  [(NSFileHandle*)[NSFileHandle fileHandleWithStandardOutput]
+    writeData: [str dataUsingEncoding: NSUTF8StringEncoding]];
+}
+
+static int getArr(NSMutableArray*arr,int pos) {
+  return [[arr objectAtIndex:pos] integerValue];
+}
+
 int main(void) {
 
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-  NSInteger offset = 0;
-  NSInteger max = 0;
+  int offset = 0;
+  int max = 0;
   NSMutableArray *incom = [NSMutableArray array];
-  NSString *tmp_s; 
+  NSString *tmpStr;
 
   // All data read
-  NSString *readdata = [[[NSString alloc] 
+  NSString *readdata = [[[NSString alloc]
     initWithData:[[NSFileHandle fileHandleWithStandardInput]
     readDataToEndOfFile] encoding:NSUTF8StringEncoding] autorelease];
   // Separate line
   NSArray *lines = [readdata componentsSeparatedByString:@"\n"];
 
-  NSArray *tmp = [[lines objectAtIndex:offset++] componentsSeparatedByString:@" "];
-  NSInteger N = [[tmp objectAtIndex:0] integerValue]; 
-  NSInteger M = [[tmp objectAtIndex:1] integerValue]; 
+  NSMutableArray *tmpArr = (NSMutableArray*)[[lines objectAtIndex:offset++] componentsSeparatedByString:@" "];
+  int N = getArr(tmpArr,0);
+  int M = getArr(tmpArr,1);
 
   if (M>0 && N>0) {
-    for (NSInteger i=0; i<M; i++) {
-      NSInteger sum = 0;
-      NSArray *temp = [[lines objectAtIndex:offset++] componentsSeparatedByString:@" "];
+    for (int i=0; i<M; i++) {
+      int sum = 0;
+      tmpArr = (NSMutableArray*)[[lines objectAtIndex:offset++] componentsSeparatedByString:@" "];
       for (NSInteger j=0; j<N; j++) {
-        sum += [[temp objectAtIndex:j] integerValue];
+        sum += getArr(tmpArr,j);
       }
       [incom addObject:@(sum)];
     }
-    for (NSInteger i=0; i<M; i++) {
-      NSInteger n = [[incom objectAtIndex:i] integerValue];
+    for (int i=0; i<M; i++) {
+      int n = getArr(incom,i);
       if (n>0) {
         max += n;
       }
     }
   }
 
-  tmp_s = [NSString stringWithFormat:@"%d\n", max];
-  [(NSFileHandle*)[NSFileHandle fileHandleWithStandardOutput]
-    writeData: [tmp_s dataUsingEncoding: NSUTF8StringEncoding]];
+  tmpStr = [NSString stringWithFormat:@"%d\n", max];
+  print(tmpStr);
 
   [pool release];
   return 0;
