@@ -30,7 +30,7 @@ int main(void) {
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
   NSInteger offset = 0;
-  int st0,st1,et0,et1,tmp1,tmp2;
+  int st0,st1,et0,et1,tmp;
 
   // All data read
   NSString *readdata = [[[NSString alloc]
@@ -46,9 +46,9 @@ int main(void) {
 
   for (int i=0; i<n; i++) {
     // データ入力(名前 時間[分])
-    NSArray *tmp = [[lines objectAtIndex:offset++] componentsSeparatedByString:@" "];
-    NSString *name = [tmp objectAtIndex:0];
-    NSInteger minutes = [[tmp objectAtIndex:1] integerValue];
+    NSArray *tmpA = [[lines objectAtIndex:offset++] componentsSeparatedByString:@" "];
+    NSString *name = [tmpA objectAtIndex:0];
+    NSInteger minutes = [[tmpA objectAtIndex:1] integerValue];
     // 終了時刻の設定
     setArr(et, getArr(st,0), 0);
     setArr(et, getArr(st,1)+minutes, 1);
@@ -58,16 +58,14 @@ int main(void) {
     et1 = getArr(et,1);
     if (lunch == NO && et0 >= 12 && et1 >= 1) {
       // 開始時刻の更新
-      st1 = getArr(st,1);
-      st1 += 50; // すでに10分休憩しているので50分を足す
-      setArr(st,st1,1);
+      // すでに10分休憩しているので50分を足す
+      tmp = getArr(st,1) + 50;
+      setArr(st,tmp,1);
       timeAdj(st);
       // 終了時刻の更新
-      st0 = getArr(st,0);
-      setArr(et,st0,0);
-      st1 = getArr(st,1);
-      et1 = st1 + minutes;
-      setArr(et,et1,1);
+      setArr(et, getArr(st,0), 0);
+      tmp = getArr(st,1) + minutes;
+      setArr(et,tmp,1);
       timeAdj(et);
       lunch = YES; // 昼休みは1回だけなのでフラグをONにする
     }
@@ -81,15 +79,11 @@ int main(void) {
     print(str);
 
     // 休憩を10分取って次の開始時刻を更新
-    et1 = getArr(et,1);
-    et1 += 10;
-    setArr(et,et1,1);
+    tmp = getArr(et,1) + 10;
+    setArr(et,tmp,1);
     timeAdj(et);
-
-    et0 = getArr(et,0);
-    setArr(st,et0,0);
-    et1 = getArr(et,1);
-    setArr(st,et1,1);
+    setArr(st,getArr(et,0),0);
+    setArr(st,getArr(et,1),1);
   }
 
   [pool release];
