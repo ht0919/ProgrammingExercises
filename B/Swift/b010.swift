@@ -13,7 +13,7 @@ if T == "A" {
   var flg = false
   var num = 1
 
-  for var i=0; i<11; i++ {
+  for i in 0 ..< 11 {
     var a = XA[i]
     if a>=55 && a>b && a>passer {
       print(num)
@@ -31,7 +31,7 @@ if T == "A" {
   var flg = false
   var num = 1
 
-  for var i=0; i<11; i++ {
+  for i in 0 ..< 11 {
     var b = XB[i]
     if b<=55 && b<a && b<passer {
       print(num)

@@ -7,15 +7,15 @@ var max = 0
 var incom = Array(count: M, repeatedValue: 0)
 
 if M>0 && N>0 {
-  for var i=0; i<M; i++ {
+  for i in 0 ..< M {
     var sum = 0
     var tmp: [Int] = readLine()!.split(" ").map { Int($0)! }
-    for var j=0; j<N; j++ {
+    for j in 0 ..< N {
       sum += tmp[j]
     }
     incom[i] = sum
   }
-  for var i=0; i<M; i++ {
+  for i in 0 ..< M {
     var n = incom[i]
     if n>0 {
       max += n

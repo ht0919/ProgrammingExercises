@@ -1,5 +1,4 @@
 extension String: CollectionType {}
-
 // 分が60以上の場合に時間を繰り上げるメソッド
 func timeAdj(inout hm: [Int]) {
   if hm[1] > 59 {
@@ -14,7 +13,7 @@ var st: [Int] = [10,0] // 開始時刻(時,分)
 var et: [Int] = [10,0] // 終了時刻(時,分)
 var lunch = false
 
-for var i=0; i<n; i++ {
+for i in 0 ..< n {
   // データ入力(名前 時間[分])
   var tmp = readLine()!.split(" ")
   let name = tmp[0]
