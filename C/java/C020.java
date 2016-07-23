@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 public class C020 {
@@ -13,6 +14,8 @@ public class C020 {
 
         double n = (double)m * (100-p) / 100;
         n = n * (100-q) / 100;
-        System.out.println(n);
+
+        DecimalFormat df = new DecimalFormat("#.####");
+        System.out.println(df.format(n));
     }
 }
