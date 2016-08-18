@@ -1,7 +1,7 @@
 //import java.util.Arrays;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-public class C023 {
+public class C023_b {
   public static void main(String args[] ) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int[] a = parseInts(readArray(br));
