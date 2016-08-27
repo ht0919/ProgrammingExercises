@@ -1,0 +1,6 @@
+g = input()
+s = input()
+b = input()
+print("Gold "   + g)
+print("Silver " + s)
+print("Bronze " + b)
